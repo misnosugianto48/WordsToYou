@@ -6,11 +6,13 @@ import {
   Param,
   Delete,
   Query,
+  HttpStatus,
 } from '@nestjs/common';
 import { ContentsService } from './contents.service';
 import { CreateContentDto } from './dto/create-content.dto';
 import { ApiCreatedResponse } from '@nestjs/swagger';
 import { ContentEntity } from './entities/content.entity';
+import { responseJson } from 'src/utils/response-json.utils';
 
 @Controller('contents')
 export class ContentsController {
@@ -18,27 +20,47 @@ export class ContentsController {
 
   @Post()
   @ApiCreatedResponse({ type: ContentEntity })
-  create(@Body() createContentDto: CreateContentDto) {
-    return this.contentsService.create(createContentDto);
+  async create(@Body() createContentDto: CreateContentDto) {
+    return responseJson(
+      'Content created successfully',
+      HttpStatus.CREATED,
+      await this.contentsService.create(createContentDto),
+    );
   }
 
   @Get()
-  findAll() {
-    return this.contentsService.findAll();
+  async findAll() {
+    return responseJson(
+      'Contents fetched successfully',
+      HttpStatus.OK,
+      await this.contentsService.findAll(),
+    );
   }
 
   @Get('search')
-  findByName(@Query('name') name: string) {
-    return this.contentsService.findByName(name);
+  async findByName(@Query('name') name: string) {
+    return responseJson(
+      'Contents fetched successfully',
+      HttpStatus.OK,
+      await this.contentsService.findByName(name),
+    );
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.contentsService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    return responseJson(
+      'Content fetched successfully',
+      HttpStatus.OK,
+      await this.contentsService.findOne(id),
+    );
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.contentsService.remove(id);
+  async remove(@Param('id') id: string) {
+    return responseJson(
+      'Content deleted successfully',
+      HttpStatus.OK,
+      await this.contentsService.remove(id),
+    );
   }
 }

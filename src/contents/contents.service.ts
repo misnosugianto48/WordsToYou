@@ -1,7 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateContentDto } from './dto/create-content.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/common/prisma.service';
 import { nanoid } from 'nanoid-cjs';
+import {
+  mapContentResponse,
+  mapContentResponses,
+} from '../utils/contents-mapper.utils';
 
 @Injectable()
 export class ContentsService {
@@ -17,18 +21,15 @@ export class ContentsService {
       data: newContent,
     });
 
-    return {
-      id: createContent.id,
-      title: createContent.title,
-      recipientName: createContent.recipient_name,
-      wordSent: createContent.word_sent,
-      createdAt: createContent.created_at,
-      updatedAt: createContent.updated_at,
-    };
+    return mapContentResponse(createContent);
   }
 
-  findAll() {
-    return this.prisma.content.findMany({ orderBy: { created_at: 'desc' } });
+  async findAll() {
+    const contents = await this.prisma.content.findMany({
+      orderBy: { created_at: 'desc' },
+    });
+
+    return mapContentResponses(contents);
   }
 
   async findByName(name: string) {
@@ -44,14 +45,7 @@ export class ContentsService {
       },
     });
 
-    return content.map((content) => ({
-      id: content.id,
-      title: content.title,
-      recipientName: content.recipient_name,
-      wordSent: content.word_sent,
-      createdAt: content.created_at,
-      updatedAt: content.updated_at,
-    }));
+    return mapContentResponses(content);
   }
 
   async findOne(id: string) {
@@ -61,14 +55,7 @@ export class ContentsService {
       throw new NotFoundException('Content not found');
     }
 
-    return {
-      id: content.id,
-      title: content.title,
-      recipientName: content.recipient_name,
-      wordSent: content.word_sent,
-      createdAt: content.created_at,
-      updatedAt: content.updated_at,
-    };
+    return mapContentResponse(content);
   }
 
   async remove(id: string) {

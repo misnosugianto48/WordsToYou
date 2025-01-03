@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { PrismaModule } from './prisma/prisma.module';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { ContentsModule } from './contents/contents.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -13,10 +11,10 @@ import { ContentsModule } from './contents/contents.module';
         limit: 10,
       },
     ]),
-    PrismaModule,
     ContentsModule,
+    CommonModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
