@@ -3,8 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Param,
-  Delete,
   Query,
   HttpStatus,
 } from '@nestjs/common';
@@ -15,7 +13,6 @@ import {
   ApiCreatedResponse,
   ApiExtraModels,
   ApiInternalServerErrorResponse,
-  ApiNotFoundResponse,
   ApiOkResponse,
   ApiQuery,
   getSchemaPath,
@@ -181,71 +178,71 @@ export class ContentsController {
     );
   }
 
-  @ApiExtraModels(ContentEntity)
-  @ApiOkResponse({
-    description: 'Content Fetched',
-    schema: {
-      type: 'object',
-      properties: {
-        status: { type: 'string', example: 'success' },
-        statusCode: {
-          example: 200,
-        },
-        message: {
-          type: 'string',
-          example: 'Content fetched successfully',
-        },
-        data: { $ref: getSchemaPath(ContentEntity) },
-      },
-    },
-  })
-  @ApiNotFoundResponse({
-    description: 'Not Found',
-    schema: {
-      type: 'object',
-      properties: {
-        status: { type: 'string', example: 'error' },
-        statusCode: {
-          example: 404,
-        },
-        message: {
-          type: 'string',
-          example: 'Content not found',
-        },
-      },
-    },
-  })
-  @ApiInternalServerErrorResponse({
-    description: 'Internal Server Error',
-    schema: {
-      type: 'object',
-      properties: {
-        status: { type: 'string', example: 'error' },
-        statusCode: {
-          example: 500,
-        },
-        message: {
-          type: 'string',
-          example: 'INTERNAL_SERVER_ERROR',
-        },
-      },
-    },
-  })
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return responseJson(
-      'Content fetched successfully',
-      HttpStatus.OK,
-      await this.contentsService.findOne(id),
-    );
-  }
+  // @ApiExtraModels(ContentEntity)
+  // @ApiOkResponse({
+  //   description: 'Content Fetched',
+  //   schema: {
+  //     type: 'object',
+  //     properties: {
+  //       status: { type: 'string', example: 'success' },
+  //       statusCode: {
+  //         example: 200,
+  //       },
+  //       message: {
+  //         type: 'string',
+  //         example: 'Content fetched successfully',
+  //       },
+  //       data: { $ref: getSchemaPath(ContentEntity) },
+  //     },
+  //   },
+  // })
+  // @ApiNotFoundResponse({
+  //   description: 'Not Found',
+  //   schema: {
+  //     type: 'object',
+  //     properties: {
+  //       status: { type: 'string', example: 'error' },
+  //       statusCode: {
+  //         example: 404,
+  //       },
+  //       message: {
+  //         type: 'string',
+  //         example: 'Content not found',
+  //       },
+  //     },
+  //   },
+  // })
+  // @ApiInternalServerErrorResponse({
+  //   description: 'Internal Server Error',
+  //   schema: {
+  //     type: 'object',
+  //     properties: {
+  //       status: { type: 'string', example: 'error' },
+  //       statusCode: {
+  //         example: 500,
+  //       },
+  //       message: {
+  //         type: 'string',
+  //         example: 'INTERNAL_SERVER_ERROR',
+  //       },
+  //     },
+  //   },
+  // })
+  // @Get(':id')
+  // async findOne(@Param('id') id: string) {
+  //   return responseJson(
+  //     'Content fetched successfully',
+  //     HttpStatus.OK,
+  //     await this.contentsService.findOne(id),
+  //   );
+  // }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return responseJson(
-      'Content deleted successfully',
-      HttpStatus.OK,
-      await this.contentsService.remove(id),
-    );
-  }
+  // @Delete(':id')
+  // async remove(@Param('id') id: string) {
+  //   return responseJson(
+  //     'Content deleted successfully',
+  //     HttpStatus.OK,
+  //     await this.contentsService.remove(id),
+  //   );
+  // }
 }

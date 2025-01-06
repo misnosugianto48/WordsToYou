@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateContentDto } from './dto/create-content.dto';
 import { PrismaService } from 'src/common/prisma.service';
 import { nanoid } from 'nanoid-cjs';
@@ -52,23 +52,23 @@ export class ContentsService {
     return mapContentResponses(content);
   }
 
-  async findOne(id: string) {
-    const content = await this.prisma.content.findUnique({ where: { id } });
+  // async findOne(id: string) {
+  //   const content = await this.prisma.content.findUnique({ where: { id } });
 
-    if (!content) {
-      throw new NotFoundException('Content not found');
-    }
+  //   if (!content) {
+  //     throw new NotFoundException('Content not found');
+  //   }
 
-    return mapContentResponse(content);
-  }
+  //   return mapContentResponse(content);
+  // }
 
-  async remove(id: string) {
-    const content = await this.prisma.content.findUnique({ where: { id } });
+  // async remove(id: string) {
+  //   const content = await this.prisma.content.findUnique({ where: { id } });
 
-    if (!content) {
-      throw new NotFoundException('Content not found');
-    }
+  //   if (!content) {
+  //     throw new NotFoundException('Content not found');
+  //   }
 
-    return await this.prisma.content.delete({ where: { id } });
-  }
+  //   return await this.prisma.content.delete({ where: { id } });
+  // }
 }
