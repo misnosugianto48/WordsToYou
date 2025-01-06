@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Query,
-  HttpStatus,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, HttpStatus } from '@nestjs/common';
 import { ContentsService } from './contents.service';
 import { CreateContentDto } from './dto/create-content.dto';
 import {

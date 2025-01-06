@@ -24,12 +24,42 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+A NestJS-based application with Prisma ORM, featuring content management and robust commit conventions.
+
+## Technologies
+
+- NestJS
+- Prisma ORM
+- TypeScript
+- Husky
+- Commitlint
+- Swagger
+
+## Prerequisites
+
+- Node.js (v18+)
+- npm
+- PostgreSQL (or your chosen database)
 
 ## Installation
 
 ```bash
+# Clone the repository
+$ git clone https://github.com/misnosugianto48/WordsToYou.git
+
+# Navigate to project directory
+$ cd WordsToYou
+
 $ npm install
+
+# Initialize Prisma
+$ npx prisma generate
+
+# prepare commit conventional
+$ npm run prepare
+
+# Copy and configure environment
+$ cp .env.example .env
 ```
 
 ## Running the app
@@ -58,11 +88,67 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Database Setup
+
+```bash
+
+# Run Prisma migrations
+$ npx prisma migrate dev
+
+
+# Run Prisma pull
+$ npx prisma db pull
+
+# Run Prisma push
+$ npx prisma db push
+```
+
+## Commit Conventions
+
+This project uses conventional commits. Commits must follow the format:
+
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `style`: Code formatting
+- `refactor`: Code refactoring
+- `test`: Adding or updating tests
+- `chore`: Maintenance tasks
+
+### Docs Commit Conventional
+
+- Conventional Commit Cheatseet - [docs](https://github.com/BryanLomerio/conventional-commit-cheatsheet)
+- Commit Lint - [commitlint](https://commitlint.js.org/)
+- Husky - [husky](https://typicode.github.io/husky/)
+
+### Example
+
+```bash
+# Commit message
+$ git commit -m "feat: add user authentication"
+```
+
+## API Documentation
+
+Swagger documentation available at `/api` when the application is running.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
+## Contact
+
+For questions or feedback, please contact: [Misno Sugianto](misno48.sugianto@gmail.com.)
+
+## Stay in touch nest
 
 - Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
 - Website - [https://nestjs.com](https://nestjs.com/)
