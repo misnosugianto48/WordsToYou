@@ -37,7 +37,7 @@ export class GlobalExceptionFilter
       switch (exception.code) {
         case 'P2002': {
           status = HttpStatus.CONFLICT;
-          message = 'Unique constraint violation';
+          message = 'Unique constraint title violation';
           break;
         }
         default: {

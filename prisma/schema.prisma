@@ -13,7 +13,6 @@ model Content {
   word_sent      String
   created_at     DateTime @default(now())
   updated_at     DateTime @updatedAt
-  title          String   @unique
 
   @@map("contents")
 }

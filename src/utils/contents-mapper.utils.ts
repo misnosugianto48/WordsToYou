@@ -3,7 +3,6 @@ import { Content } from 'prisma/prisma-client';
 export const mapContentResponse = (content: Content): object => {
   return {
     id: content.id,
-    title: content.title,
     recipientName: content.recipient_name,
     wordSent: content.word_sent,
     createdAt: content.created_at,

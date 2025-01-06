@@ -5,11 +5,6 @@ export class CreateContentDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  title: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
   recipient_name: string;
 
   @IsString()

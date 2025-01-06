@@ -6,9 +6,6 @@ export class ContentEntity implements Content {
   id: string;
 
   @ApiProperty()
-  title: string;
-
-  @ApiProperty()
   recipient_name: string;
 
   @ApiProperty()

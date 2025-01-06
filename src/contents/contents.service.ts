@@ -32,11 +32,15 @@ export class ContentsService {
     return mapContentResponses(contents);
   }
 
-  async findByName(name: string) {
+  async findByName(name?: string) {
+    if (!name) {
+      return this.findAll();
+    }
+
     const content = await this.prisma.content.findMany({
       where: {
         recipient_name: {
-          startsWith: `%${name}%`,
+          startsWith: name,
           mode: 'insensitive',
         },
       },
