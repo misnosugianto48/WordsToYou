@@ -1,6 +1,7 @@
 import { Content } from 'prisma/prisma-client';
+import { ContentEntity } from 'src/contents/entities/content.entity';
 
-export const mapContentResponse = (content: Content): object => {
+export const mapContentResponse = (content: Content): ContentEntity => {
   return {
     id: content.id,
     recipientName: content.recipient_name,
@@ -10,6 +11,6 @@ export const mapContentResponse = (content: Content): object => {
   };
 };
 
-export const mapContentResponses = (contents: Content[]): object[] => {
+export const mapContentResponses = (contents: Content[]): ContentEntity[] => {
   return contents.map((content) => mapContentResponse(content));
 };

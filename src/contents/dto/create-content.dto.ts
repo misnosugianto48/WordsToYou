@@ -5,10 +5,10 @@ export class CreateContentDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  recipient_name: string;
+  recipientName: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  word_sent: string;
+  wordSent: string;
 }

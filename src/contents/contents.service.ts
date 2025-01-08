@@ -14,7 +14,8 @@ export class ContentsService {
   async create(createContentDto: CreateContentDto) {
     const newContent = {
       id: `c-${nanoid(10)}`,
-      ...createContentDto,
+      recipient_name: createContentDto.recipientName,
+      word_sent: createContentDto.wordSent,
     };
 
     const createContent = await this.prisma.content.create({

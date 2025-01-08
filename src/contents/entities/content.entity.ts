@@ -1,19 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Content } from 'prisma/prisma-client';
-
-export class ContentEntity implements Content {
+export class ContentEntity {
   @ApiProperty()
   id: string;
 
   @ApiProperty()
-  recipient_name: string;
+  recipientName: string;
 
   @ApiProperty()
-  word_sent: string;
+  wordSent: string;
 
   @ApiProperty()
-  created_at: Date;
+  createdAt: Date;
 
   @ApiProperty()
-  updated_at: Date;
+  updatedAt: Date;
 }
